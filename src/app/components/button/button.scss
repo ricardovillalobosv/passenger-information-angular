@@ -1,0 +1,16 @@
+@use 'sass:color';
+$color: #7c5dfa;
+
+.button {
+  border-radius: 1rem;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: #ebebeb;
+  background-color: $color;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: white;
+    background-color: color.adjust($color, $lightness: -5%);
+  }
+}
