@@ -1,1 +1,22 @@
-<p>input works!</p>
+@let localControl = control();
+<div class="input">
+  <label [for]="id()" class="input__label">{{ label() }}</label>
+  <input
+    type="text"
+    [formControl]="localControl"
+    (blur)="onTouched()"
+    [name]="id()"
+    [id]="id()"
+    [type]="type()"
+    class="input__control"
+  />
+</div>
+
+@if (localControl.invalid && (localControl.dirty || localControl.touched)) {
+<div class="error-message">
+  <pre>{{ localControl.errors | json }}</pre>
+  @if (localControl.errors?.["required"]) {
+  <span>Este campo es requerido</span>
+  }
+</div>
+}
