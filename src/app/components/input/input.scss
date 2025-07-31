@@ -1,0 +1,28 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    color: white;
+    font-size: 12px;
+  }
+
+  &__control {
+    all: unset;
+    padding: 10px 15px;
+    border: 1px solid #252945;
+    border-radius: 5px;
+    color: white;
+    background-color: #1e2139;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #9277ff;
+    }
+
+    &.error {
+      border-color: #ef4444;
+    }
+  }
+}
