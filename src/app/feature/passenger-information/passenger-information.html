@@ -1,24 +1,79 @@
-<section>
-  @let items = form.controls.items.controls;
+<section class="grid grid-cols-6 gap-12 bg-[#141625]">
+  <article class="col-span-6 md:col-span-4">
+    @let items = form.controls.items.controls;
 
-  <button (click)="addItem()">Add Item</button>
+    <div class="flex flex-col gap-4">
+      <h1 class="text-white text-3xl">Passenger Information</h1>
 
-  @for (formGroup of items; track formGroup.controls.id.value) {
-  <div [formGroup]="formGroup">
-    <app-input
-      [control]="formGroup.controls.name"
-      formControlName="name"
-      id="name"
-      label="Name"
-    />
-    <app-input
-      [control]="formGroup.controls.value"
-      formControlName="value"
-      id="value"
-      label="Value"
-    />
-  </div>
-  }
+      @for (formGroup of items; track formGroup.controls.id.value) {
+      <div class="passenger-information__card">
+        <div class="flex justify-between">
+          <h2 class="text-white text-xl mb-2">
+            Passenger {{ formGroup.controls.id.value }}
+          </h2>
 
-  <pre>{{ form.value | json }}</pre>
+          <button
+            (click)="removeItem($index)"
+            class="btn-remove text-alert-50 border-b-2 border-b-alert-50"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div [formGroup]="formGroup" class="grid grid-cols-12 gap-4">
+          <app-input
+            [control]="formGroup.controls.name"
+            formControlName="name"
+            id="name"
+            label="Name"
+            class="col-span-4"
+          />
+          <app-input
+            [control]="formGroup.controls.lastName"
+            formControlName="lastName"
+            id="value"
+            label="Last Name"
+            class="col-span-8"
+          />
+          <app-input
+            [control]="formGroup.controls.documentType"
+            formControlName="documentType"
+            id="documentType"
+            label="Document Type"
+            class="col-span-4"
+          />
+          <app-input
+            [control]="formGroup.controls.dni"
+            formControlName="dni"
+            id="dni"
+            label="DNI"
+            class="col-span-4"
+          />
+          <app-input
+            [control]="formGroup.controls.gender"
+            formControlName="gender"
+            id="gender"
+            label="Gender"
+            class="col-span-4"
+          />
+          <app-input
+            [control]="formGroup.controls.email"
+            formControlName="email"
+            id="email"
+            label="Email"
+            class="col-span-8"
+          />
+        </div>
+      </div>
+      }
+      <app-button (click)="addItem()" class="self-end"> Add Item </app-button>
+    </div>
+  </article>
+
+  <article class="col-span-6 md:col-span-2 border-l-2 border-l-white">
+    <div class="pl-12">
+      <h1 class="text-white text-3xl">Data</h1>
+      <pre class="text-white">{{ form.value | json }}</pre>
+    </div>
+  </article>
 </section>

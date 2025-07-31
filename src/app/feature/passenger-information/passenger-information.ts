@@ -9,18 +9,23 @@ import {
   Validators,
 } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { Button } from '../../components/button/button';
 
-export interface ItemForm {
+export interface PassengerItemForm {
   id: FormControl<number>;
   name: FormControl<string>;
-  value: FormControl<number>;
+  lastName: FormControl<string>;
+  email: FormControl<string>;
+  documentType: FormControl<number | null>;
+  dni: FormControl<number | null>;
+  gender: FormControl<string>;
 }
 
-export type CustomFormGroup = FormGroup<ItemForm>;
+export type CustomFormGroup = FormGroup<PassengerItemForm>;
 
 @Component({
   selector: 'app-passenger-information',
-  imports: [ReactiveFormsModule, Input, JsonPipe],
+  imports: [ReactiveFormsModule, Input, Button, JsonPipe],
   templateUrl: './passenger-information.html',
   styleUrl: './passenger-information.scss',
 })
@@ -37,12 +42,24 @@ export class PassengerInformation {
 
   addItem() {
     const id = this.items.length + 1;
-    const itemForm = this.fb.group<ItemForm>({
+    const itemForm = this.fb.group<PassengerItemForm>({
       id: this.fb.control(id),
       name: this.fb.control('', { validators: [Validators.required] }),
-      value: this.fb.control(0, { validators: [Validators.required] }),
+      lastName: this.fb.control('', { validators: [Validators.required] }),
+      email: this.fb.control('', { validators: [Validators.required] }),
+      documentType: this.fb.control(null, {
+        validators: [Validators.required],
+      }),
+      dni: this.fb.control(null, { validators: [Validators.required] }),
+      gender: this.fb.control('', { validators: [Validators.required] }),
     });
 
     this.form.controls.items.push(itemForm);
+  }
+
+  removeItem(id: number) {
+    console.log(id)
+    this.form.controls.items.removeAt(id);
+    console.log(this.form.controls.items.value)
   }
 }
