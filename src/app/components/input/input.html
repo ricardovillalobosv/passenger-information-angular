@@ -1,7 +1,8 @@
 @let localControl = control();
-@let error = localControl.invalid && (localControl.dirty || localControl.touched);
-
-<div class="input">
+@let error = localControl.invalid && (localControl.dirty ||
+  localControl.touched);
+  
+<div class="input">  
   <label [for]="id()" class="input__label">{{ label() }}</label>
   <input
     type="text"
