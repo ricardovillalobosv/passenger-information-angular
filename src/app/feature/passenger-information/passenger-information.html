@@ -1,1 +1,24 @@
-<p>passenger-information works!</p>
+<section>
+  @let items = form.controls.items.controls;
+
+  <button (click)="addItem()">Add Item</button>
+
+  @for (formGroup of items; track formGroup.controls.id.value) {
+  <div [formGroup]="formGroup">
+    <app-input
+      [control]="formGroup.controls.name"
+      formControlName="name"
+      id="name"
+      label="Name"
+    />
+    <app-input
+      [control]="formGroup.controls.value"
+      formControlName="value"
+      id="value"
+      label="Value"
+    />
+  </div>
+  }
+
+  <pre>{{ form.value | json }}</pre>
+</section>
