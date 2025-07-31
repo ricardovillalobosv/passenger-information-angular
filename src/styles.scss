@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Spartan";
+  src: url("./assets/font/LeagueSpartan-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Spartan";
+}
+
