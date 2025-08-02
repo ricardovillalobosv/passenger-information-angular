@@ -50,10 +50,11 @@
             label="DNI"
             class="col-span-4"
           />
-          <app-input
+          <app-radio-button
             [control]="formGroup.controls.gender"
             formControlName="gender"
-            id="gender"
+            [options]="genderOptions"
+            [name]="`${formGroup.controls.id.value}`"
             label="Gender"
             class="col-span-4"
           />
@@ -76,6 +77,7 @@
   >
     <div class="pt-10 lg:pl-10">
       <h1 class="text-white text-3xl">Data</h1>
+      <pre class="text-white text-sm">{{ form.valid | json }}</pre>
       <pre class="text-white text-sm">{{ form.value | json }}</pre>
     </div>
   </article>
