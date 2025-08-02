@@ -9,7 +9,9 @@
   }
 
   &__control {
+    box-sizing: border-box !important;
     all: unset;
+    height: 46px;
     padding: 10px 15px;
     border: 1px solid #252945;
     border-radius: 5px;
