@@ -1,0 +1,18 @@
+@let localControl = control();
+<div class="radio-button">
+  <p class="radio-button__label">{{ label() }}</p>
+  <div class="radio-button__container flex w-full">
+    @for(option of options(); track option?.id) {
+    <app-radio-button-control
+      [value]="option.value"
+      [formControl]="localControl"
+      (ngModelChange)="onChange($event)"
+      (blur)="onTouched()"
+      [id]="option.id"
+      [label]="option.label"
+      [name]="name()"
+      class="w-full radio-button__border"
+    />
+    }
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="radio-button-control">
+  <div class="flex items-center h-full">
+    <input
+      type="radio"
+      [value]="value()"
+      [(ngModel)]="value_"
+      (ngModelChange)="onChange($event)"
+      (blur)="onTouched()"
+      [id]="inputID"
+      [name]="name()"
+      class="radio-button-control__input"
+    />
+    <label [for]="inputID" class="radio-button-control__label"
+      >{{ label() }}
+    </label>
+  </div>
+</div>
