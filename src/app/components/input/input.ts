@@ -26,6 +26,10 @@ export class Input implements ControlValueAccessor {
   label = input.required<string>();
   type = input<string>('text');
 
+  get formatId() {
+    return `${this.id()}-input`;
+  }
+
   onTouched = () => {};
   onChange = (_value: any) => {};
 
