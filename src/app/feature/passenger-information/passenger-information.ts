@@ -40,8 +40,15 @@ export class PassengerInformation {
     return this.form.controls.items;
   }
 
+  get lastItem() {
+    return this.form.controls.items?.at(-1)?.value;
+  }
+
   addItem() {
-    const id = this.items.length + 1;
+    let id = this.items.length + 1;
+    if (this.lastItem) {
+      id = (this.lastItem.id || 0) + 1;
+    }
     const itemForm = this.fb.group<PassengerItemForm>({
       id: this.fb.control(id),
       name: this.fb.control('', { validators: [Validators.required] }),
