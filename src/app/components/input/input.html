@@ -15,10 +15,16 @@
   />
 </div>
 
-<!-- @if (error) {
-<div class="error-message">
+@if (error) {
+<div class="error-message text-alert-50 text-sm mt-1">
   @if (localControl.errors?.["required"]) {
-  <span>Este campo es requerido</span>
+  <span>Please enter {{ label() }}</span>
+  }
+  @if (
+    localControl.errors?.["minlength"] ||
+    localControl.errors?.["email"] ||
+    localControl.errors?.["maxlength"]) {
+  <span>{{ label() }} invalid</span>
   }
 </div>
-} -->
+}

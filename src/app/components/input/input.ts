@@ -7,6 +7,14 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+export type inputType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'number'
+  | 'tel'
+  | 'url';
+
 @Component({
   selector: 'app-input',
   imports: [ReactiveFormsModule, JsonPipe],
@@ -24,7 +32,7 @@ export class Input implements ControlValueAccessor {
   control = input.required<FormControl<any>>();
   id = input.required<string>();
   label = input.required<string>();
-  type = input<string>('text');
+  type = input<inputType>('text');
 
   get formatId() {
     return `${this.id()}-input`;
