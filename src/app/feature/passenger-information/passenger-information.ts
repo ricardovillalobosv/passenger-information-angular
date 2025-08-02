@@ -53,11 +53,20 @@ export class PassengerInformation {
       id: this.fb.control(id),
       name: this.fb.control('', { validators: [Validators.required] }),
       lastName: this.fb.control('', { validators: [Validators.required] }),
-      email: this.fb.control('', { validators: [Validators.required] }),
+      email: this.fb.control('', {
+        validators: [Validators.required, Validators.email],
+      }),
       documentType: this.fb.control(null, {
         validators: [Validators.required],
       }),
-      dni: this.fb.control(null, { validators: [Validators.required] }),
+      dni: this.fb.control(null, {
+        validators: [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(8),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      }),
       gender: this.fb.control('', { validators: [Validators.required] }),
     });
 
@@ -65,8 +74,6 @@ export class PassengerInformation {
   }
 
   removeItem(id: number) {
-    console.log(id)
     this.form.controls.items.removeAt(id);
-    console.log(this.form.controls.items.value)
   }
 }
