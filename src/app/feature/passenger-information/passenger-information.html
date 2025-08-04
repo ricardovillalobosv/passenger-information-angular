@@ -35,10 +35,17 @@
             label="Last Name"
             class="col-span-8"
           />
-          <app-input
+          <!-- <app-input
             [control]="formGroup.controls.documentType"
             formControlName="documentType"
             id="documentType"
+            label="Document Type"
+            class="col-span-4"
+          /> -->
+          <app-select
+            [control]="formGroup.controls.documentType"
+            formControlName="documentType"
+            [options]="documentTypeOptions"
             label="Document Type"
             class="col-span-4"
           />
@@ -68,6 +75,7 @@
         </div>
       </div>
       }
+
       <app-button (click)="addItem()" class="self-end"> Add Item </app-button>
     </div>
   </article>

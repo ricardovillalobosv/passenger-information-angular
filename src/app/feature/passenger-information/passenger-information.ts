@@ -20,13 +20,14 @@ import {
   RadioButton,
   RadioButtonOptions,
 } from '../../components/radio-button/radio-button';
+import { Select, SelectOptions } from '../../components/select/select';
 
 export interface PassengerItemForm {
   id: FormControl<number>;
   name: FormControl<string>;
   lastName: FormControl<string>;
   email: FormControl<string>;
-  documentType: FormControl<number | null>;
+  documentType: FormControl<number | string | null>;
   dni: FormControl<number | null>;
   gender: FormControl<string | null>;
 }
@@ -35,7 +36,7 @@ export type CustomFormGroup = FormGroup<PassengerItemForm>;
 
 @Component({
   selector: 'app-passenger-information',
-  imports: [ReactiveFormsModule, Input, RadioButton, Button, JsonPipe],
+  imports: [ReactiveFormsModule, Input, RadioButton, Button, Select, JsonPipe],
   templateUrl: './passenger-information.html',
   styleUrl: './passenger-information.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,6 +59,11 @@ export class PassengerInformation {
   genderOptions: RadioButtonOptions[] = [
     { id: 1, label: 'Female', value: 'F' },
     { id: 2, label: 'Male', value: 'M' },
+  ];
+
+  documentTypeOptions: SelectOptions[] = [
+    { id: 1, label: 'DNI', value: 'D' },
+    { id: 2, label: 'Foreigners identity card', value: 'F' },
   ];
 
   addItem() {
