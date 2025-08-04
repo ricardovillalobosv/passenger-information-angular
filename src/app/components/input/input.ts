@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, forwardRef, input } from '@angular/core';
 import {
   ControlValueAccessor,
