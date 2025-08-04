@@ -1,92 +1,10 @@
 <section class="grid grid-cols-1 md:grid-cols-12 gap-10 bg-[#141625]">
-  <article class="md:col-span-12 lg:col-span-7">
-    @let items = form.controls.items.controls;
-
-    <div class="flex flex-col gap-4">
-      <h1 class="text-white text-3xl">Passenger Information</h1>
-
-      @for (formGroup of items; track formGroup.controls.id.value) {
-      <div class="passenger-information__card">
-        <div class="flex justify-between">
-          <h2 class="text-white text-xl mb-2">
-            Passenger {{ formGroup.controls.id.value }}
-          </h2>
-
-          <button
-            (click)="removeItem($index)"
-            class="btn-remove text-alert-50 border-b-2 border-b-alert-50"
-          >
-            Remove
-          </button>
-        </div>
-
-        <div [formGroup]="formGroup" class="grid grid-cols-12 gap-4">
-          <app-input
-            [control]="formGroup.controls.name"
-            formControlName="name"
-            id="name"
-            label="Name"
-            class="col-span-4"
-          />
-          <app-input
-            [control]="formGroup.controls.lastName"
-            formControlName="lastName"
-            id="value"
-            label="Last Name"
-            class="col-span-8"
-          />
-          <!-- <app-input
-            [control]="formGroup.controls.documentType"
-            formControlName="documentType"
-            id="documentType"
-            label="Document Type"
-            class="col-span-4"
-          /> -->
-          <app-select
-            [control]="formGroup.controls.documentType"
-            formControlName="documentType"
-            [options]="documentTypeOptions"
-            label="Document Type"
-            class="col-span-4"
-          />
-          <app-input
-            [control]="formGroup.controls.dni"
-            formControlName="dni"
-            type="number"
-            id="dni"
-            label="DNI"
-            class="col-span-4"
-          />
-          <app-radio-button
-            [control]="formGroup.controls.gender"
-            formControlName="gender"
-            [options]="genderOptions"
-            [name]="`${formGroup.controls.id.value}`"
-            label="Gender"
-            class="col-span-4"
-          />
-          <app-input
-            [control]="formGroup.controls.email"
-            formControlName="email"
-            id="email"
-            label="Email"
-            class="col-span-8"
-          />
-        </div>
-      </div>
-      }
-
-      <app-button (click)="addItem()" class="self-end"> Add Item </app-button>
-    </div>
-  </article>
-
-  <article
-    class="md:col-span-12 lg:col-span-5 border-t-2 lg:border-t-0 lg:border-l-2 border-white"
-  >
-    <div class="pt-10 lg:pl-10">
-      <h1 class="text-white text-3xl">Data</h1>
-      <pre class="text-white text-sm">{{ form.valid | json }}</pre>
-      <pre class="text-white text-sm">{{ form.value | json }}</pre>
-    </div>
-  </article>
+  <app-form
+    (sentData)="handleData($event)"
+    class="md:col-span-12 lg:col-span-7"
+  />
+  <app-data
+    [data]="data"
+    class="md:col-span-12 lg:col-span-5 border-t lg:border-t-0 lg:border-l border-white"
+  />
 </section>

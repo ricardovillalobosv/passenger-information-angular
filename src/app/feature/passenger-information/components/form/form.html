@@ -1,0 +1,73 @@
+<article>
+  @let items = form.controls.items.controls;
+
+  <div class="flex flex-col gap-4">
+    <h1 class="text-white text-3xl">Passenger Information</h1>
+
+    @for (formGroup of items; track formGroup.controls.id.value) {
+    <div class="passenger-information__card">
+      <div class="flex justify-between">
+        <h2 class="text-white text-xl mb-2">
+          Passenger {{ formGroup.controls.id.value }}
+        </h2>
+
+        <button
+          (click)="removeItem($index)"
+          class="btn-remove text-alert-50 border-b-2 border-b-alert-50"
+        >
+          Remove
+        </button>
+      </div>
+
+      <div [formGroup]="formGroup" class="grid grid-cols-12 gap-4">
+        <app-input
+          [control]="formGroup.controls.name"
+          formControlName="name"
+          id="name"
+          label="Name"
+          class="col-span-12 md:col-span-4"
+        />
+        <app-input
+          [control]="formGroup.controls.lastName"
+          formControlName="lastName"
+          id="value"
+          label="Last Name"
+          class="col-span-12 md:col-span-8"
+        />
+        <app-select
+          [control]="formGroup.controls.documentType"
+          formControlName="documentType"
+          [options]="documentTypeOptions"
+          label="Document Type"
+          class="col-span-12 md:col-span-4"
+        />
+        <app-input
+          [control]="formGroup.controls.dni"
+          formControlName="dni"
+          type="number"
+          id="dni"
+          label="DNI"
+          class="col-span-12 md:col-span-4"
+        />
+        <app-radio-button
+          [control]="formGroup.controls.gender"
+          formControlName="gender"
+          [options]="genderOptions"
+          [name]="`${formGroup.controls.id.value}`"
+          label="Gender"
+          class="col-span-12 md:col-span-4"
+        />
+        <app-input
+          [control]="formGroup.controls.email"
+          formControlName="email"
+          id="email"
+          label="Email"
+          class="col-span-12 md:col-span-8"
+        />
+      </div>
+    </div>
+    }
+
+    <app-button (click)="addItem()" class="self-end"> Add Passenger </app-button>
+  </div>
+</article>
