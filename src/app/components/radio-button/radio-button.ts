@@ -35,7 +35,7 @@ export interface RadioButtonOptions {
 })
 export class RadioButton implements ControlValueAccessor {
   control = input.required<FormControl<any>>();
-  options = input.required<RadioButtonOptions[]>(); 
+  options = input.required<RadioButtonOptions[]>();
   name = input.required<string>();
   label = input.required<string>();
 
@@ -54,6 +54,8 @@ export class RadioButton implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? console.log('disabled') : console.log('not disabled');
+    if (isDisabled === this.control().disabled) return;
+    
+    isDisabled ? this.control().disable() : this.control().enable();
   }
 }

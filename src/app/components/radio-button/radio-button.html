@@ -1,5 +1,5 @@
 @let localControl = control();
-<div class="radio-button">
+<div class="radio-button" [class.disabled]="localControl.disabled">
   <p class="radio-button__label">{{ label() }}</p>
   <div class="radio-button__container flex w-full">
     @for(option of options(); track option?.id) {

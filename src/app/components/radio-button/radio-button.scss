@@ -19,4 +19,10 @@ $height: 46px;
   &__border {
     border-right: 1px solid #252945;
   }
+
+  &.disabled {
+    .radio-button__container {
+      background-color: #191c2f;
+    }
+  }
 }

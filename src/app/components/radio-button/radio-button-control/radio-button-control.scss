@@ -5,16 +5,49 @@ $height: 46px;
   &__label {
     width: 100%;
     height: 100%;
-    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 10px;
     line-height: $height;
     font-size: 14px;
     color: white;
     cursor: pointer;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 1em;
+      border: 1px solid #3e4474;
+      border-radius: 50%;
+      margin-right: 0.5em;
+    }
   }
 
   &__input {
-    margin-left: 10px;
-    cursor: pointer;
-    background-color: #1e2139;
+    opacity: 0;
+    position: fixed;
+    width: 0;
+
+    &:checked + label::before {
+      background-color: #9277ff;
+      border-color: #9277ff;
+    }
+
+    &:disabled {
+      & + label {
+        cursor: not-allowed;
+      }
+
+      & + label::before {
+        border: 1px solid #373b61;
+        // background-color: #cccccc;
+      }
+
+      &:checked + label::before {
+        background-color: #7368a0;
+        border-color: #7368a0;
+      }
+    }
   }
 }

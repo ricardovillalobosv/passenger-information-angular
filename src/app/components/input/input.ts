@@ -33,6 +33,7 @@ export class Input implements ControlValueAccessor {
   id = input.required<string>();
   label = input.required<string>();
   type = input<inputType>('text');
+  placeholder = input<string>('');
 
   get formatId() {
     return `${this.id()}-input`;
@@ -53,6 +54,8 @@ export class Input implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
+    if (isDisabled === this.control().disabled) return;
+    
     isDisabled ? this.control().disable() : this.control().enable();
   }
 }

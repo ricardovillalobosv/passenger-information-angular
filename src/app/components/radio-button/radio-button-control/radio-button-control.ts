@@ -3,10 +3,10 @@ import {
   Component,
   forwardRef,
   input,
+  signal,
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
@@ -27,12 +27,13 @@ import {
   ],
 })
 export class RadioButtonControl implements ControlValueAccessor {
-  // control = input.required<FormControl<any>>();
   value_: any;
   value = input.required<any>();
   id = input.required<string | number>();
   name = input.required<string>();
   label = input.required<string>();
+
+  isDisabled = signal(false);
 
   get inputID() {
     return `id-${this.id()}-${this.name()}`;
@@ -51,6 +52,6 @@ export class RadioButtonControl implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? console.log('disabled') : console.log('not disabled');
+    this.isDisabled.set(isDisabled);
   }
 }

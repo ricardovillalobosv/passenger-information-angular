@@ -53,6 +53,8 @@ export class Select implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
+    if (isDisabled === this.control().disabled) return;
+    
     isDisabled ? this.control().disable() : this.control().enable();
   }
 
