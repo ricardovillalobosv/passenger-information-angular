@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  output,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -33,6 +34,7 @@ export interface SelectOptions {
 })
 export class Select implements ControlValueAccessor {
   control = input.required<FormControl<any>>();
+  modelChange = output<any>();
   label = input.required<string>();
   options = input.required<SelectOptions[]>();
 
@@ -52,5 +54,9 @@ export class Select implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     isDisabled ? this.control().disable() : this.control().enable();
+  }
+
+  emitModelChange() {
+    this.modelChange.emit(this.control().value);
   }
 }
