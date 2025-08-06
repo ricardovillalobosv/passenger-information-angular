@@ -6,7 +6,7 @@ export interface Passenger {
   lastName?: string;
   email?: string;
   documentType?: string;
-  dni?: number;
+  documentNumber?: number;
   gender?: string | number;
 }
 
@@ -20,6 +20,6 @@ export interface PassengerItemForm {
   lastName: FormControl<string>;
   email: FormControl<string>;
   documentType: FormControl<number | string | null>;
-  dni: FormControl<number | null>;
+  documentNumber: FormControl<number | null>;
   gender: FormControl<string | null>;
 }
