@@ -6,6 +6,7 @@ import {
   output,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormGroup,
   NonNullableFormBuilder,
@@ -20,12 +21,14 @@ import {
 } from '../../../../components/radio-button/radio-button';
 import { Select, SelectOptions } from '../../../../components/select/select';
 import { Button } from '../../../../components/button/button';
-import { JsonPipe } from '@angular/common';
-import { PassengerData, PassengerItemForm } from '../../../../core/models/passenger';
+import {
+  PassengerData,
+  PassengerItemForm,
+} from '../../../../core/models/passenger';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, Input, RadioButton, Select, Button, JsonPipe],
+  imports: [ReactiveFormsModule, Input, RadioButton, Select, Button],
   templateUrl: './form.html',
   styleUrl: './form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,7 +86,7 @@ export class Form implements OnInit {
       documentType: this.fb.control(null, {
         validators: [Validators.required],
       }),
-      dni: this.fb.control(null, {
+      documentNumber: this.fb.control(null, {
         validators: [
           Validators.required,
           Validators.minLength(8),
@@ -99,5 +102,24 @@ export class Form implements OnInit {
 
   removeItem(id: number) {
     this.form.controls.items.removeAt(id);
+  }
+
+  handleDocumentType(documentType: string, formGroup: FormGroup) {
+    const documentNumber = formGroup.controls['documentNumber'];
+    if (documentType === 'D') {
+      this.documentValidations(documentNumber, 8);
+    } else {
+      this.documentValidations(documentNumber, 11);
+    }
+  }
+
+  documentValidations(control: AbstractControl, numberCharacters: number) {
+    control.setValidators(null);
+    control.updateValueAndValidity();
+    control.setValidators([
+      Validators.minLength(numberCharacters),
+      Validators.maxLength(numberCharacters),
+    ]);
+    control.setValue(null);
   }
 }

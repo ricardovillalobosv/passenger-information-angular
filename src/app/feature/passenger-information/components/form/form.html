@@ -37,16 +37,19 @@
         <app-select
           [control]="formGroup.controls.documentType"
           formControlName="documentType"
+          (modelChange)="
+            handleDocumentType($event, formGroup)
+          "
           [options]="documentTypeOptions"
           label="Document Type"
           class="col-span-12 md:col-span-4"
         />
         <app-input
-          [control]="formGroup.controls.dni"
-          formControlName="dni"
+          [control]="formGroup.controls.documentNumber"
+          formControlName="documentNumber"
           type="number"
-          id="dni"
-          label="DNI"
+          id="documentNumber"
+          label="Document number"
           class="col-span-12 md:col-span-4"
         />
         <app-radio-button
@@ -68,6 +71,8 @@
     </div>
     }
 
-    <app-button (click)="addItem()" class="self-end"> Add Passenger </app-button>
+    <app-button (click)="addItem()" class="self-end">
+      Add Passenger
+    </app-button>
   </div>
 </article>
