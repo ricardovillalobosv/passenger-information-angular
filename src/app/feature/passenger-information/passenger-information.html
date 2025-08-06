@@ -1,9 +1,9 @@
 <section class="grid grid-cols-1 md:grid-cols-12 gap-10 bg-[#141625]">
-  <app-form
+  <app-passenger-information-form
     (sentData)="handleData($event)"
     class="md:col-span-12 lg:col-span-7"
   />
-  <app-data
+  <app-passenger-information-data
     [data]="data"
     class="md:col-span-12 lg:col-span-5 border-t lg:border-t-0 lg:border-l border-white"
   />

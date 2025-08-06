@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Data } from './data';
+import { Data } from './passenger-information-data';
 
 describe('Data', () => {
   let component: Data;

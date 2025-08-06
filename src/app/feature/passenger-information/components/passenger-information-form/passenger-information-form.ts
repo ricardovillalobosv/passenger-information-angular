@@ -27,13 +27,13 @@ import {
 } from '../../../../core/models/passenger';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-passenger-information-form',
   imports: [ReactiveFormsModule, Input, RadioButton, Select, Button],
-  templateUrl: './form.html',
-  styleUrl: './form.scss',
+  templateUrl: './passenger-information-form.html',
+  styleUrl: './passenger-information-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Form implements OnInit {
+export class PassengerInformationForm implements OnInit {
   sentData = output<PassengerData>();
 
   fb = inject(NonNullableFormBuilder);
