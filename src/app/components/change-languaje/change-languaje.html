@@ -1,0 +1,16 @@
+<div class="flex justify-end mb-10">
+  <div class="change-languaje">
+    @for(option of languajeOptions; track option.value ) {
+      <button
+        (click)="changeLanguage(option.value)"
+        [class.selected]="option.selected"
+        class="change-languaje__btn"
+      >
+        {{ option.label }}
+      </button>
+      @if ($index < languajeOptions.length - 1) {
+        <div class="line"></div>
+      }
+    }
+  </div>
+</div>
