@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, Component, forwardRef, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export type inputType =
   | 'text'
@@ -16,7 +22,7 @@ export type inputType =
 
 @Component({
   selector: 'app-input',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './input.html',
   styleUrl: './input.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,7 +61,7 @@ export class Input implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     if (isDisabled === this.control().disabled) return;
-    
+
     isDisabled ? this.control().disable() : this.control().enable();
   }
 }

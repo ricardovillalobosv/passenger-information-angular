@@ -19,13 +19,13 @@
 @if (error) {
 <div class="error-message text-alert-50 text-sm mt-1">
   @if (localControl.errors?.["required"]) {
-  <span>Please enter {{ label() }}</span>
+  <span>{{ "INPUT_ERROR_MESSAGE" | translate}} {{ label() }}</span>
   }
   @if (
     localControl.errors?.["minlength"] ||
     localControl.errors?.["email"] ||
     localControl.errors?.["maxlength"]) {
-  <span>{{ label() }} invalid</span>
+  <span>{{ label() }} {{ "INPUT_INVALID_ERROR_MESSAGE" | translate}}</span>
   }
 </div>
 }

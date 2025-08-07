@@ -1,5 +1,5 @@
-@let localControl = control();
-@let error = localControl.invalid && (localControl.dirty || localControl.touched);
+@let localControl = control(); @let error = localControl.invalid &&
+(localControl.dirty || localControl.touched);
 
 <div class="select">
   <label for="countries" class="select__label">{{ label() }}</label>
@@ -10,7 +10,10 @@
     (ngModelChange)="emitModelChange()"
     (blur)="onTouched()"
   >
-    <option selected [value]="null">Choose a {{ label() }}</option>
+    <option selected [value]="null">
+      {{ "PASSENGER_INFORMATION_FORM_PLACEHOLDER_DOCUMENT_TYPE" | translate }}
+      {{ label() }}
+    </option>
     @for(option of options(); track option.id) {
     <option [value]="option?.value">{{ option?.label }}</option>
     }
@@ -19,7 +22,7 @@
 @if (error) {
 <div class="error-message text-alert-50 text-sm mt-1">
   @if (localControl.errors?.["required"]) {
-    <span>Please select {{ label() }}</span>
+  <span>{{ "SELECT_ERROR_MESSAGE" | translate }} {{ label() }}</span>
   }
 </div>
 }

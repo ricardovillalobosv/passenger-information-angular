@@ -25,10 +25,18 @@ import {
   PassengerData,
   PassengerItemForm,
 } from '../../../../core/models/passenger';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-passenger-information-form',
-  imports: [ReactiveFormsModule, Input, RadioButton, Select, Button],
+  imports: [
+    ReactiveFormsModule,
+    Input,
+    RadioButton,
+    Select,
+    Button,
+    TranslatePipe
+  ],
   templateUrl: './passenger-information-form.html',
   styleUrl: './passenger-information-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

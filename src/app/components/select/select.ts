@@ -11,6 +11,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface SelectOptions {
   id: number;
@@ -20,7 +21,7 @@ export interface SelectOptions {
 
 @Component({
   selector: 'app-select',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './select.html',
   styleUrl: './select.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
