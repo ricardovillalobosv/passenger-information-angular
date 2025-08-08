@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  OnInit,
   output,
 } from '@angular/core';
 import {
@@ -33,7 +34,7 @@ export interface SelectOptions {
     },
   ],
 })
-export class Select implements ControlValueAccessor {
+export class Select implements ControlValueAccessor, OnInit {
   control = input.required<FormControl<any>>();
   modelChange = output<any>();
   label = input.required<string>();
@@ -42,11 +43,18 @@ export class Select implements ControlValueAccessor {
   onTouched = () => {};
   onChange = (_value: any) => {};
 
+  ngOnInit(): void {
+    this.control().valueChanges.subscribe((value) => {
+      this.modelChange.emit(value);
+    });
+  }
+
   writeValue(value: any): void {
     if (value !== this.control().value) {
       this.control().setValue(value, { emitEvent: false });
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -55,11 +63,11 @@ export class Select implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     if (isDisabled === this.control().disabled) return;
-    
+
     isDisabled ? this.control().disable() : this.control().enable();
   }
 
-  emitModelChange() {
-    this.modelChange.emit(this.control().value);
+  emitModelChange(value: any) {
+    this.modelChange.emit(value);
   }
 }
