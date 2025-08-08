@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  OnInit,
 } from '@angular/core';
 import { RadioButtonControl } from './radio-button-control/radio-button-control';
 import {
@@ -33,7 +34,7 @@ export interface RadioButtonOptions {
     },
   ],
 })
-export class RadioButton implements ControlValueAccessor {
+export class RadioButton implements ControlValueAccessor, OnInit {
   control = input.required<FormControl<any>>();
   options = input.required<RadioButtonOptions[]>();
   name = input.required<string>();
@@ -41,6 +42,14 @@ export class RadioButton implements ControlValueAccessor {
 
   onTouched = () => {};
   onChange = (_value: any) => {};
+
+  ngOnInit(): void {
+    this.control().valueChanges.subscribe((value) => {
+      if (value === this.control().value) return;
+      
+      this.onChange(value);
+    })
+  }
 
   writeValue(value: any): void {
     if (value !== this.control().value) {
