@@ -8,7 +8,7 @@
       [formControl]="localControl"
       (blur)="onTouched()"
       [id]="option.id"
-      [label]="option.label"
+      [label]="option.label | translate"
       [name]="name()"
       class="w-full radio-button__border"
     />

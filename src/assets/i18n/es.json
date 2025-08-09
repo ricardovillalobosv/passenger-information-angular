@@ -1,4 +1,7 @@
 {
+  "FEMALE": "Femenino",
+  "MALE": "Masculino",
+
   "INPUT_ERROR_MESSAGE": "Por favor ingrese un",
   "INPUT_INVALID_ERROR_MESSAGE": "invalido",
   "SELECT_ERROR_MESSAGE": "Por favor seleccione un",

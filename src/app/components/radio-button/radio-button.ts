@@ -13,6 +13,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface RadioButtonOptions {
   id: number;
@@ -22,7 +23,12 @@ export interface RadioButtonOptions {
 
 @Component({
   selector: 'app-radio-button',
-  imports: [ReactiveFormsModule, FormsModule, RadioButtonControl],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    RadioButtonControl,
+    TranslatePipe,
+  ],
   templateUrl: './radio-button.html',
   styleUrl: './radio-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,9 +52,9 @@ export class RadioButton implements ControlValueAccessor, OnInit {
   ngOnInit(): void {
     this.control().valueChanges.subscribe((value) => {
       if (value === this.control().value) return;
-      
+
       this.onChange(value);
-    })
+    });
   }
 
   writeValue(value: any): void {
@@ -64,7 +70,7 @@ export class RadioButton implements ControlValueAccessor, OnInit {
   }
   setDisabledState?(isDisabled: boolean): void {
     if (isDisabled === this.control().disabled) return;
-    
+
     isDisabled ? this.control().disable() : this.control().enable();
   }
 }

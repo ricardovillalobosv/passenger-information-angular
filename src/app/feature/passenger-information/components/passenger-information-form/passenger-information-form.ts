@@ -35,13 +35,14 @@ import { TranslatePipe } from '@ngx-translate/core';
     RadioButton,
     Select,
     Button,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './passenger-information-form.html',
   styleUrl: './passenger-information-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PassengerInformationForm implements OnInit {
+  
   sentData = output<PassengerData>();
 
   fb = inject(NonNullableFormBuilder);
@@ -51,8 +52,8 @@ export class PassengerInformationForm implements OnInit {
   });
 
   genderOptions: RadioButtonOptions[] = [
-    { id: 1, label: 'Female', value: 'F' },
-    { id: 2, label: 'Male', value: 'M' },
+    { id: 1, label: 'FEMALE', value: 'F' },
+    { id: 2, label: 'MALE', value: 'M' },
   ];
 
   documentTypeOptions: SelectOptions[] = [
