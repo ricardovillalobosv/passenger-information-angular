@@ -58,7 +58,7 @@ export class PassengerInformationForm implements OnInit {
 
   documentTypeOptions: SelectOptions[] = [
     { id: 1, label: 'DNI', value: 'D' },
-    { id: 2, label: 'Foreigners identity card', value: 'F' },
+    { id: 2, label: 'FOREIGNERS_INDENTITY_CARD', value: 'F' },
   ];
 
   ngOnInit(): void {
